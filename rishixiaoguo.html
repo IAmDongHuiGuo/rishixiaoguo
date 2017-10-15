@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+
+        }
+
+        html {
+            height: 100%; /*浏览器窗口*/
+            --timing: 6s; /**/
+            --love: skyblue;
+        }
+
+        body {
+            height: inherit; /*继承html*/
+            display: grid; /*网格布局*/
+            background-color: var(--love);
+            animation: atmosphere var(--timing) linear infinite;
+        }
+
+        #wrap {
+            position: relative;
+            margin: auto;
+        }
+
+        #wrap .love {
+            width: 200px;
+            height: 180px;
+            position: relative;
+            /*background-color: #368;*/
+
+        }
+
+        /*整理  将重复的代码整合*/
+        #wrap .love::after, #wrap .love::before {
+            content: ''; /*激活伪元素*/
+            position: absolute;
+            width: 100px;
+            height: 150px;
+            border-radius: 50px 50px 0 0;
+            background: #ffb2c6;
+        }
+
+        #wrap .love::after {
+            left: 32px;
+            transform: rotate(-45deg);
+        }
+
+        #wrap .love::before {
+            left: 68px;
+            transform: rotate(45deg);
+        }
+
+        #wrap .love:last-of-type {
+            position: absolute;
+            top: 0;
+            right: -200px;
+            animation: move var(--timing) linear infinite;
+        }
+
+        #wrap .love:last-of-type::after,
+        #wrap .love:last-of-type::before {
+            background-color: var(--love);
+            animation: atmosphere var(--timing) linear infinite;
+        }
+
+        @keyframes move { /*自定义动画*/
+            0% {
+                right: -200px;
+            }
+            100% {
+                right: 200px;
+            }
+        }
+
+        @keyframes atmosphere {
+            0% {
+                background-color: var(--love);
+            }
+            50% {
+                background-color: black;
+            }
+            100% {
+                background-color: var(--love);
+            }
+        }
+        button{
+            background-color: #bcffac;
+            margin:100px auto auto auto;
+            height: 50px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div class="love"></div>
+    <div class="love"></div>
+</div>
+<button id="btn">biu</button>
+</body>
+<script>
+    var btn=document.getElementById('btn');
+   var  aa=document.getElementById('wrap');
+    btn.onclick=function () {
+     aa.innerHTML=('宝宝短头发好好看啊');
+    }
+</script>
+</html>
